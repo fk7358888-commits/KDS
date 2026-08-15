@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | KDS</title>
+    <meta
+      name="description"
+      content="Contact Khan Digital Skills to request website design, SEO, paid ads, automation, and digital services for your small business."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="brand" aria-label="KDS home">
+          <span class="brand-mark">KDS</span>
+          <span class="brand-text">Khan Digital Skills</span>
+        </a>
+
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="index.html#why-us">Why Us</a>
+          <a href="contact.html" class="active">Contact</a>
+        </nav>
+
+        <a href="contact.html" class="btn btn-primary nav-btn">Book a Call</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero small-hero contact-hero">
+        <div class="container narrow text-center">
+          <span class="eyebrow">Contact KDS</span>
+          <h1>Let’s build your digital growth plan.</h1>
+          <p>
+            Share a few details and we will reach out with the best next steps for your business.
+          </p>
+        </div>
+      </section>
+
+      <section class="section contact-section">
+        <div class="container contact-grid">
+          <div class="info-panel">
+            <h2>Talk to our team</h2>
+            <p>We help small business owners improve digital reach, automate work, and grow with confidence.</p>
+            <ul>
+              <li>Email: hello@kdsdigital.com</li>
+              <li>Phone: +123 456 7890</li>
+              <li>Location: Online support worldwide</li>
+            </ul>
+          </div>
+
+          <form class="lead-form" id="leadForm">
+            <div class="field-row">
+              <label>
+                Full name
+                <input type="text" name="name" placeholder="Your name" required />
+              </label>
+              <label>
+                Business name
+                <input type="text" name="business" placeholder="Business name" required />
+              </label>
+            </div>
+
+            <div class="field-row">
+              <label>
+                Email address
+                <input type="email" name="email" placeholder="you@example.com" required />
+              </label>
+              <label>
+                Phone number
+                <input type="tel" name="phone" placeholder="Your phone number" required />
+              </label>
+            </div>
+
+            <label>
+              Service needed
+              <select name="service" required>
+                <option value="">Select a service</option>
+                <option>Ad Posting</option>
+                <option>Web Page Making</option>
+                <option>Thumbnail Making</option>
+                <option>Video Making & Editing</option>
+                <option>SEO</option>
+                <option>Automation</option>
+                <option>Chatbot Building</option>
+                <option>Vibe Coding</option>
+                <option>Custom package</option>
+              </select>
+            </label>
+
+            <label>
+              Business goals
+              <textarea name="message" rows="5" placeholder="Tell us about your business goals, challenges, or ideas..." required></textarea>
+            </label>
+
+            <button type="submit" class="btn btn-primary submit-btn">Send Inquiry</button>
+            <p class="form-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a href="index.html" class="brand footer-brand">
+            <span class="brand-mark">KDS</span>
+            <span class="brand-text">Khan Digital Skills</span>
+          </a>
+          <p>Helping small business owners build digital growth with smart, clear, results-driven solutions.</p>
+        </div>
+        <div>
+          <h3>Quick links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <ul>
+            <li>Email: hello@kdsdigital.com</li>
+            <li>Phone: +123 456 7890</li>
+            <li>Hours: Mon - Sat</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container copy-row">
+        <p>© <span id="year"></span> Khan Digital Skills. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
