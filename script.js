@@ -1,77 +1,50 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const yearEl = document.getElementById("year");
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
+const menuToggle = document.querySelector('.menu-toggle');
+const siteNav = document.querySelector('.site-nav');
 
-  const navToggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector(".main-nav");
+menuToggle.addEventListener('click', () => {
+  const isOpen = siteNav.classList.toggle('open');
+  menuToggle.setAttribute('aria-expanded', String(isOpen));
+});
 
-  if (navToggle && nav) {
-    navToggle.addEventListener("click", () => {
-      const expanded = navToggle.getAttribute("aria-expanded") === "true";
-      navToggle.setAttribute("aria-expanded", String(!expanded));
-      nav.classList.toggle("open");
-    });
-  }
-
-  const faqItems = document.querySelectorAll(".faq-item");
-  faqItems.forEach((item) => {
-    const button = item.querySelector(".faq-question");
-
-    button.addEventListener("click", () => {
-      const isOpen = item.classList.contains("active");
-      faqItems.forEach((faq) => {
-        faq.classList.remove("active");
-      });
-
-      if (!isOpen) {
-        item.classList.add("active");
-      }
-    });
+document.querySelectorAll('.site-nav a').forEach((link) => {
+  link.addEventListener('click', () => {
+    siteNav.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
   });
+});
 
-  const forms = document.querySelectorAll("form");
-  forms.forEach((form) => {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      const status = form.querySelector(".form-status");
-      const inputs = form.querySelectorAll("input, select, textarea");
-      let allValid = true;
-
-      inputs.forEach((field) => {
-        if (!field.checkValidity()) {
-          allValid = false;
-          field.reportValidity();
-        }
-      });
-
-      if (!allValid) {
-        if (status) {
-          status.textContent = "Please complete all required fields.";
-          status.className = "form-status error";
-        }
-        return;
-      }
-
-      const formData = new FormData(form);
-      const payload = Object.fromEntries(formData.entries());
-
-      try {
-        const existing = JSON.parse(localStorage.getItem("kdsLeads") || "[]");
-        existing.push({ ...payload, date: new Date().toISOString() });
-        localStorage.setItem("kdsLeads", JSON.stringify(existing));
-      } catch (error) {
-        console.error("Could not save form data locally:", error);
-      }
-
-      if (status) {
-        status.textContent = "Thanks! Your details have been recorded successfully.";
-        status.className = "form-status success";
-      }
-
-      form.reset();
+document.querySelectorAll('.faq-question').forEach((question) => {
+  question.addEventListener('click', () => {
+    const isOpen = question.getAttribute('aria-expanded') === 'true';
+    document.querySelectorAll('.faq-question').forEach((item) => {
+      item.setAttribute('aria-expanded', 'false');
+      document.getElementById(item.getAttribute('aria-controls')).hidden = true;
     });
+    if (!isOpen) {
+      question.setAttribute('aria-expanded', 'true');
+      document.getElementById(question.getAttribute('aria-controls')).hidden = false;
+    }
   });
+});
+
+const revealItems = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+revealItems.forEach((item) => revealObserver.observe(item));
+
+document.querySelector('#year').textContent = new Date().getFullYear();
+
+document.querySelector('#contact-form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  const emailInput = document.querySelector('#email');
+  const formMessage = document.querySelector('#form-message');
+  formMessage.textContent = `Thanks. We'll be in touch at ${emailInput.value}.`;
+  emailInput.value = '';
 });
